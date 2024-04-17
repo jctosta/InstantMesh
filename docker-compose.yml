@@ -1,0 +1,16 @@
+services:
+  demo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    ports:
+      - "43839:43839"
+    volumes:
+      - ./ckpts:/app/ckpts
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
